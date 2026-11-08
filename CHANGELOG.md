@@ -4,6 +4,24 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Deterministic 10-manuscript synthetic benchmark adapter: `bench/run-manuscripts.mjs`
+  and the `bench:manuscripts` script. It reads `../dsh-research-bench/data/manuscripts`,
+  scores the 14 `manuscript` items against generator-frozen labels, and writes
+  `bench/results-manuscripts.json` / `bench/results-manuscripts.md` (no timestamps;
+  re-running is byte-identical).
+- README / README-zh evaluation sections now report the measured 140-label
+  metrics (presence micro P/R/F1, missing-alert P/R/F1, per-document accuracy,
+  core-section exact match) and the measured keyword misses.
+
+### Notes
+
+- The benchmark data live in `dsh-research-bench` and are not vendored. Labels
+  are fixed by the generator, never derived from plugin output.
+
 ## [0.1.1] - 2026-11-08
 
 ### Changed

@@ -88,9 +88,34 @@ dsh --profile <name> --dump-config | grep dsh-manuscript-check
 
 ## 评测
 
-**20 个测试**：章节切分（markdown + 纯文本 + markdown 标题/纯文本章节混排）、指南覆盖（完整的 CONSORT 风格 fixture ≥90%、缺失项带建议、定位信息）、自动识别、指南目录、材料包扫描（完整材料包、图表编号断档、声明缺失、没有稿件时判定未就绪）、运行时（REP 记录合法性、auto 指南 + 文件读取、路径遍历/二进制/超大文件拒绝（含读取前字节上限）、材料包导出）、tools（schema、扁平缺失列表、失败分支）、包契约。
+**22 个测试**：章节切分（markdown + 纯文本 + markdown 标题/纯文本章节混排）、指南覆盖（完整的 CONSORT 风格 fixture ≥90%、缺失项带建议、定位信息）、自动识别、指南目录、材料包扫描（完整材料包、图表编号断档、声明缺失、没有稿件时判定未就绪）、运行时（REP 记录合法性、auto 指南 + 文件读取、路径遍历/二进制/超大文件拒绝（含读取前字节上限）、材料包导出）、tools（schema、扁平缺失列表、失败分支）、包契约。
 
-不声称基准测试结果：这是一份基于规则的检查清单，其真值应是“人工是否也发现了同样的条目”，这需要一套单独裁决的语料。十份合成稿件是下一步自然的基准测试集；在此之前，单元 fixture 就是证据。
+### 合成稿件基准
+
+一份独立的确定性基准（数据集 `manuscripts` v0.1.0，已冻结）位于同级仓库 `dsh-research-bench` 的 `data/manuscripts`，不随本包发布。10 篇 300–800 词的合成稿件（每篇 525–774 词，共 6,361 词）带有 **140 个条目标签**（14 项 `manuscript` 指南；135 个 present / 5 个 missing）以及文档级 `missingCoreSections` 标签。
+
+覆盖：完整 CONSORT 风格试验、缺伦理/同意、缺数据可用性、缺随机化/注册、缺摘要、缺统计方法、STROBE 风格队列、PRISMA 风格综述、无 markdown `#` 的纯文本标题，以及中英混排标题。
+
+适配器逐篇调用 `analyzeManuscript(text, [guidelineOf('manuscript')], ['manuscript'])`，写出 [`bench/results-manuscripts.json`](bench/results-manuscripts.json) 与 [`bench/results-manuscripts.md`](bench/results-manuscripts.md)（不含时间戳；重跑逐字节一致）。
+
+```sh
+pnpm run bench:manuscripts   # 先构建，再读取 ../dsh-research-bench/data/manuscripts（BENCH_DIR 可覆盖）
+```
+
+| 指标 | TP | FP | FN | TN | 精确率 | 召回率 | F1 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 条目存在（正类 = `present`，主指标） | 130 | 1 | 5 | 4 | 0.9924 | 0.9630 | 0.9774 |
+| 缺失告警（正类 = `missing`） | 4 | 5 | 1 | 130 | 0.4444 | 0.8000 | 0.5714 |
+
+- 条目准确率 **0.9571**（134/140）；逐文档准确率在 0.7143–1.0000 之间。
+- 文档级 `missingCoreSections` 完全匹配 **10/10**（1.0000）。
+- 7/10 篇文档的 14 项全部正确。
+
+**实测漏检/误报（未修改标签）。** 5 个漏检中有 4 个出现在内容完整的 STROBE 稿件里：`funding`（"supported by"）、`conflicts`（"competing financial interests"）、`data`（"dataset is deposited"）、`contributions`（仅列作者分工，没有 "Author contributions" 或 CRediT 线索）。第 5 个是纯文本标题：标题线索只认 `#` 或 `Title:`，独立一行的标题会被漏掉。唯一的 present 误报是缺摘要稿件的 `abstract`：讨论中的 "In summary" 命中了 `summary`。用户真正会据以行动的是“缺失”告警，因此告警行同样重要：4 个漏检的 present 项加上纯文本标题，会变成 5 个缺失告警误报，所以即使存在项覆盖很高，告警精确率仍只有 0.4444。
+
+**标签空间限制。** 14 项 `manuscript` 指南没有“统计方法”或“随机化”条目。`ms-0004`（缺随机化/注册）与 `ms-0006`（缺统计方法）用于覆盖这两类内容缺口，但只有 `ms-0004` 的注册缺失会被计分；`ms-0006` 按构造是 14 项全 present。不要把本基准当作“这两类缺口已被检出”的证据。
+
+**有效性说明。** 10 篇合成稿件与关键词规则由同一项目编写。这是**回归基线，不是无偏的真实稿件准确率估计**。标签由生成器固定，看到检测结果后没有改过任何标签。
 
 ## 已知限制（v0.1）
 

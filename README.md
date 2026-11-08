@@ -89,9 +89,34 @@ dsh --profile <name> --dump-config | grep dsh-manuscript-check
 
 ## Evaluation
 
-**20 tests**: section splitting (markdown + plain + mixed markdown-title/plain-section), guideline coverage (complete CONSORT-style fixture ≥90%, missing items with advice, locators), auto-detection, guideline catalogue, pack scanning (complete pack, figure gap, missing declarations, not-ready without a manuscript), runtime (REP record validity, auto guideline + file reading, traversal/binary/oversize rejection including a pre-read byte cap, pack exports), tools (schemas, flat missing list, failure branch), package contract.
+**22 tests**: section splitting (markdown + plain + mixed markdown-title/plain-section), guideline coverage (complete CONSORT-style fixture ≥90%, missing items with advice, locators), auto-detection, guideline catalogue, pack scanning (complete pack, figure gap, missing declarations, not-ready without a manuscript), runtime (REP record validity, auto guideline + file reading, traversal/binary/oversize rejection including a pre-read byte cap, pack exports), tools (schemas, flat missing list, failure branch), package contract.
 
-No benchmark is claimed: this is a rule-based checklist whose ground truth would be "did the human find the same items", which needs a separate adjudicated corpus. Ten synthetic manuscripts are the natural next bench set; until then the unit fixtures are the evidence.
+### Synthetic manuscript benchmark
+
+A separate deterministic benchmark (dataset `manuscripts` v0.1.0, frozen) lives in the sibling `dsh-research-bench` repository under `data/manuscripts`; it is not vendored into this package. Ten 300–800-word synthetic manuscripts (525–774 words each; 6,361 total) carry **140 item labels** from the 14-item `manuscript` guideline (135 present / 5 missing), plus a document-level `missingCoreSections` label.
+
+Coverage: complete CONSORT-style trial, missing ethics/consent, missing data availability, missing randomization/registration, missing abstract, missing statistical methods, STROBE-style cohort, PRISMA-style review, a plain-text title without markdown `#`, and a mixed Chinese-English title.
+
+The adapter calls `analyzeManuscript(text, [guidelineOf('manuscript')], ['manuscript'])` once per manuscript and writes [`bench/results-manuscripts.json`](bench/results-manuscripts.json) and [`bench/results-manuscripts.md`](bench/results-manuscripts.md) (no timestamps; re-running is byte-identical).
+
+```sh
+pnpm run bench:manuscripts   # builds, then reads ../dsh-research-bench/data/manuscripts (BENCH_DIR overrides)
+```
+
+| Metric | TP | FP | FN | TN | Precision | Recall | F1 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Item presence (positive = `present`, headline) | 130 | 1 | 5 | 4 | 0.9924 | 0.9630 | 0.9774 |
+| Missing-item alert (positive = `missing`) | 4 | 5 | 1 | 130 | 0.4444 | 0.8000 | 0.5714 |
+
+- Item accuracy **0.9571** (134/140); per-document accuracy ranges from 0.7143 to 1.0000.
+- Document-level `missingCoreSections` exact match **10/10** (1.0000).
+- All 14 items are exact on 7/10 documents.
+
+**Measured misses (labels were not changed).** Four of the five presence misses are in the content-complete STROBE manuscript: `funding` ("supported by"), `conflicts` ("competing financial interests"), `data` ("dataset is deposited"), and `contributions` (a roles line with no "Author contributions" or CRediT cue). The fifth is the plain-text title: the title cue requires `#` or `Title:`, so a standalone plain title line is missed. The single false present is `abstract` in the missing-abstract manuscript, where "In summary" in the discussion matches `summary`. Because missing alerts are what a user acts on, the alert row matters: four missed present items plus the plain title become five false alarms, so alert precision is 0.4444 even though presence coverage is high.
+
+**Label-space limit.** The 14-item `manuscript` guideline has no statistical-methods or randomization item. `ms-0004` (no randomization/registration) and `ms-0006` (no statistical methods) exercise those content gaps, but only `ms-0004`'s missing registration is scored; `ms-0006` is all-14-present by construction. Do not cite this benchmark as evidence that those two gaps are detected.
+
+**Validity caveat.** The ten synthetic manuscripts and the keyword rules were authored by the same project. This is a **regression baseline, not an unbiased estimate** of real-manuscript accuracy. Labels are fixed by the generator; none was changed after seeing the detector.
 
 ## Known limitations (v0.1)
 

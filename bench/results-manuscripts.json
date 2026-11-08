@@ -1,0 +1,1219 @@
+{
+  "dataset": "manuscripts",
+  "datasetVersion": "0.1.0",
+  "synthetic": true,
+  "plugin": {
+    "name": "dsh-manuscript-check",
+    "version": "0.1.1"
+  },
+  "command": "pnpm run bench:manuscripts",
+  "call": "analyzeManuscript(text, [guidelineOf('manuscript')], ['manuscript'])",
+  "cases": 10,
+  "itemsPerCase": 14,
+  "labels": {
+    "total": 140,
+    "present": 135,
+    "missing": 5
+  },
+  "words": {
+    "min": 525,
+    "max": 774,
+    "total": 6361,
+    "mean": 636.1
+  },
+  "metrics": {
+    "averaging": "micro",
+    "positiveClass": "present",
+    "present": {
+      "tp": 130,
+      "fp": 1,
+      "fn": 5,
+      "tn": 4,
+      "precision": 0.9924,
+      "recall": 0.963,
+      "f1": 0.9774
+    },
+    "missing": {
+      "tp": 4,
+      "fp": 5,
+      "fn": 1,
+      "tn": 130,
+      "precision": 0.4444,
+      "recall": 0.8,
+      "f1": 0.5714
+    },
+    "itemAccuracy": 0.9571
+  },
+  "documents": {
+    "total": 10,
+    "allItemsExact": 7,
+    "allItemsExactRate": 0.7,
+    "coreMissingExact": 10,
+    "coreMissingExactRate": 1
+  },
+  "perItem": [
+    {
+      "id": "title",
+      "label": "Title",
+      "expectedPresent": 10,
+      "expectedMissing": 0,
+      "present": {
+        "tp": 9,
+        "fp": 0,
+        "fn": 1,
+        "tn": 0,
+        "precision": 1,
+        "recall": 0.9,
+        "f1": 0.9474
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "tn": 9,
+        "precision": 0,
+        "recall": null,
+        "f1": 0
+      }
+    },
+    {
+      "id": "abstract",
+      "label": "Abstract",
+      "expectedPresent": 9,
+      "expectedMissing": 1,
+      "present": {
+        "tp": 9,
+        "fp": 1,
+        "fn": 0,
+        "tn": 0,
+        "precision": 0.9,
+        "recall": 1,
+        "f1": 0.9474
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "tn": 9,
+        "precision": null,
+        "recall": 0,
+        "f1": 0
+      }
+    },
+    {
+      "id": "introduction",
+      "label": "Introduction / background",
+      "expectedPresent": 10,
+      "expectedMissing": 0,
+      "present": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "tn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 10,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "id": "methods",
+      "label": "Methods",
+      "expectedPresent": 10,
+      "expectedMissing": 0,
+      "present": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "tn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 10,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "id": "results",
+      "label": "Results",
+      "expectedPresent": 10,
+      "expectedMissing": 0,
+      "present": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "tn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 10,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "id": "discussion",
+      "label": "Discussion",
+      "expectedPresent": 10,
+      "expectedMissing": 0,
+      "present": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "tn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 10,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "id": "conclusion",
+      "label": "Conclusion",
+      "expectedPresent": 10,
+      "expectedMissing": 0,
+      "present": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "tn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 10,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      }
+    },
+    {
+      "id": "ethics",
+      "label": "Ethics approval",
+      "expectedPresent": 9,
+      "expectedMissing": 1,
+      "present": {
+        "tp": 9,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 9,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      }
+    },
+    {
+      "id": "consent",
+      "label": "Informed consent",
+      "expectedPresent": 9,
+      "expectedMissing": 1,
+      "present": {
+        "tp": 9,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 9,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      }
+    },
+    {
+      "id": "funding",
+      "label": "Funding",
+      "expectedPresent": 10,
+      "expectedMissing": 0,
+      "present": {
+        "tp": 9,
+        "fp": 0,
+        "fn": 1,
+        "tn": 0,
+        "precision": 1,
+        "recall": 0.9,
+        "f1": 0.9474
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "tn": 9,
+        "precision": 0,
+        "recall": null,
+        "f1": 0
+      }
+    },
+    {
+      "id": "conflicts",
+      "label": "Conflicts of interest",
+      "expectedPresent": 10,
+      "expectedMissing": 0,
+      "present": {
+        "tp": 9,
+        "fp": 0,
+        "fn": 1,
+        "tn": 0,
+        "precision": 1,
+        "recall": 0.9,
+        "f1": 0.9474
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "tn": 9,
+        "precision": 0,
+        "recall": null,
+        "f1": 0
+      }
+    },
+    {
+      "id": "data",
+      "label": "Data availability",
+      "expectedPresent": 9,
+      "expectedMissing": 1,
+      "present": {
+        "tp": 8,
+        "fp": 0,
+        "fn": 1,
+        "tn": 1,
+        "precision": 1,
+        "recall": 0.8889,
+        "f1": 0.9412
+      },
+      "missing": {
+        "tp": 1,
+        "fp": 1,
+        "fn": 0,
+        "tn": 8,
+        "precision": 0.5,
+        "recall": 1,
+        "f1": 0.6667
+      }
+    },
+    {
+      "id": "contributions",
+      "label": "Author contributions",
+      "expectedPresent": 10,
+      "expectedMissing": 0,
+      "present": {
+        "tp": 9,
+        "fp": 0,
+        "fn": 1,
+        "tn": 0,
+        "precision": 1,
+        "recall": 0.9,
+        "f1": 0.9474
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "tn": 9,
+        "precision": 0,
+        "recall": null,
+        "f1": 0
+      }
+    },
+    {
+      "id": "registration",
+      "label": "Registration / protocol",
+      "expectedPresent": 9,
+      "expectedMissing": 1,
+      "present": {
+        "tp": 9,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 9,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      }
+    }
+  ],
+  "perDocument": [
+    {
+      "id": "ms-0001",
+      "category": "complete-consort",
+      "wordCount": 774,
+      "sectionsDetected": 13,
+      "expectedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "predictedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "expectedMissing": [],
+      "predictedMissing": [],
+      "present": {
+        "tp": 14,
+        "fp": 0,
+        "fn": 0,
+        "tn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 14,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      },
+      "correctItems": 14,
+      "accuracy": 1,
+      "allItemsMatch": true,
+      "coreMissing": {
+        "expected": [],
+        "actual": [],
+        "match": true
+      },
+      "mismatches": []
+    },
+    {
+      "id": "ms-0002",
+      "category": "missing-ethics-consent",
+      "wordCount": 683,
+      "sectionsDetected": 13,
+      "expectedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "missing",
+        "consent": "missing",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "predictedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "missing",
+        "consent": "missing",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "expectedMissing": [
+        "ethics",
+        "consent"
+      ],
+      "predictedMissing": [
+        "ethics",
+        "consent"
+      ],
+      "present": {
+        "tp": 12,
+        "fp": 0,
+        "fn": 0,
+        "tn": 2,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "tn": 12,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "correctItems": 14,
+      "accuracy": 1,
+      "allItemsMatch": true,
+      "coreMissing": {
+        "expected": [],
+        "actual": [],
+        "match": true
+      },
+      "mismatches": []
+    },
+    {
+      "id": "ms-0003",
+      "category": "missing-data-availability",
+      "wordCount": 611,
+      "sectionsDetected": 12,
+      "expectedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "missing",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "predictedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "missing",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "expectedMissing": [
+        "data"
+      ],
+      "predictedMissing": [
+        "data"
+      ],
+      "present": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 13,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "correctItems": 14,
+      "accuracy": 1,
+      "allItemsMatch": true,
+      "coreMissing": {
+        "expected": [],
+        "actual": [],
+        "match": true
+      },
+      "mismatches": []
+    },
+    {
+      "id": "ms-0004",
+      "category": "missing-randomization",
+      "wordCount": 636,
+      "sectionsDetected": 12,
+      "expectedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "missing"
+      },
+      "predictedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "missing"
+      },
+      "expectedMissing": [
+        "registration"
+      ],
+      "predictedMissing": [
+        "registration"
+      ],
+      "present": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 0,
+        "tn": 1,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "tn": 13,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "correctItems": 14,
+      "accuracy": 1,
+      "allItemsMatch": true,
+      "coreMissing": {
+        "expected": [],
+        "actual": [],
+        "match": true
+      },
+      "mismatches": []
+    },
+    {
+      "id": "ms-0005",
+      "category": "missing-abstract",
+      "wordCount": 545,
+      "sectionsDetected": 11,
+      "expectedItems": {
+        "title": "present",
+        "abstract": "missing",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "predictedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "expectedMissing": [
+        "abstract"
+      ],
+      "predictedMissing": [],
+      "present": {
+        "tp": 13,
+        "fp": 1,
+        "fn": 0,
+        "tn": 0,
+        "precision": 0.9286,
+        "recall": 1,
+        "f1": 0.963
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "tn": 13,
+        "precision": null,
+        "recall": 0,
+        "f1": 0
+      },
+      "correctItems": 13,
+      "accuracy": 0.9286,
+      "allItemsMatch": false,
+      "coreMissing": {
+        "expected": [
+          "abstract"
+        ],
+        "actual": [
+          "abstract"
+        ],
+        "match": true
+      },
+      "mismatches": [
+        {
+          "case": "ms-0005",
+          "category": "missing-abstract",
+          "item": "abstract",
+          "label": "Abstract",
+          "expected": "missing",
+          "predicted": "present",
+          "locator": {
+            "charStart": 2588,
+            "charEnd": 2595,
+            "match": "summary"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ms-0006",
+      "category": "missing-statistical-methods",
+      "wordCount": 598,
+      "sectionsDetected": 12,
+      "expectedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "predictedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "expectedMissing": [],
+      "predictedMissing": [],
+      "present": {
+        "tp": 14,
+        "fp": 0,
+        "fn": 0,
+        "tn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 14,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      },
+      "correctItems": 14,
+      "accuracy": 1,
+      "allItemsMatch": true,
+      "coreMissing": {
+        "expected": [],
+        "actual": [],
+        "match": true
+      },
+      "mismatches": []
+    },
+    {
+      "id": "ms-0007",
+      "category": "strobe-cohort",
+      "wordCount": 617,
+      "sectionsDetected": 12,
+      "expectedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "predictedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "missing",
+        "conflicts": "missing",
+        "data": "missing",
+        "contributions": "missing",
+        "registration": "present"
+      },
+      "expectedMissing": [],
+      "predictedMissing": [
+        "funding",
+        "conflicts",
+        "data",
+        "contributions"
+      ],
+      "present": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 4,
+        "tn": 0,
+        "precision": 1,
+        "recall": 0.7143,
+        "f1": 0.8333
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 4,
+        "fn": 0,
+        "tn": 10,
+        "precision": 0,
+        "recall": null,
+        "f1": 0
+      },
+      "correctItems": 10,
+      "accuracy": 0.7143,
+      "allItemsMatch": false,
+      "coreMissing": {
+        "expected": [],
+        "actual": [],
+        "match": true
+      },
+      "mismatches": [
+        {
+          "case": "ms-0007",
+          "category": "strobe-cohort",
+          "item": "funding",
+          "label": "Funding",
+          "expected": "present",
+          "predicted": "missing",
+          "advice": "add a funding statement"
+        },
+        {
+          "case": "ms-0007",
+          "category": "strobe-cohort",
+          "item": "conflicts",
+          "label": "Conflicts of interest",
+          "expected": "present",
+          "predicted": "missing",
+          "advice": "add a conflicts-of-interest statement"
+        },
+        {
+          "case": "ms-0007",
+          "category": "strobe-cohort",
+          "item": "data",
+          "label": "Data availability",
+          "expected": "present",
+          "predicted": "missing",
+          "advice": "add a data-availability statement with an accession or repository"
+        },
+        {
+          "case": "ms-0007",
+          "category": "strobe-cohort",
+          "item": "contributions",
+          "label": "Author contributions",
+          "expected": "present",
+          "predicted": "missing",
+          "advice": "add an author-contributions statement"
+        }
+      ]
+    },
+    {
+      "id": "ms-0008",
+      "category": "prisma-review",
+      "wordCount": 706,
+      "sectionsDetected": 12,
+      "expectedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "predictedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "expectedMissing": [],
+      "predictedMissing": [],
+      "present": {
+        "tp": 14,
+        "fp": 0,
+        "fn": 0,
+        "tn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 14,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      },
+      "correctItems": 14,
+      "accuracy": 1,
+      "allItemsMatch": true,
+      "coreMissing": {
+        "expected": [],
+        "actual": [],
+        "match": true
+      },
+      "mismatches": []
+    },
+    {
+      "id": "ms-0009",
+      "category": "plain-text-title",
+      "wordCount": 525,
+      "sectionsDetected": 6,
+      "expectedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "predictedItems": {
+        "title": "missing",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "expectedMissing": [],
+      "predictedMissing": [
+        "title"
+      ],
+      "present": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 1,
+        "tn": 0,
+        "precision": 1,
+        "recall": 0.9286,
+        "f1": 0.963
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 0,
+        "tn": 13,
+        "precision": 0,
+        "recall": null,
+        "f1": 0
+      },
+      "correctItems": 13,
+      "accuracy": 0.9286,
+      "allItemsMatch": false,
+      "coreMissing": {
+        "expected": [],
+        "actual": [],
+        "match": true
+      },
+      "mismatches": [
+        {
+          "case": "ms-0009",
+          "category": "plain-text-title",
+          "item": "title",
+          "label": "Title",
+          "expected": "present",
+          "predicted": "missing",
+          "advice": "add a title"
+        }
+      ]
+    },
+    {
+      "id": "ms-0010",
+      "category": "mixed-language-title",
+      "wordCount": 666,
+      "sectionsDetected": 13,
+      "expectedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "predictedItems": {
+        "title": "present",
+        "abstract": "present",
+        "introduction": "present",
+        "methods": "present",
+        "results": "present",
+        "discussion": "present",
+        "conclusion": "present",
+        "ethics": "present",
+        "consent": "present",
+        "funding": "present",
+        "conflicts": "present",
+        "data": "present",
+        "contributions": "present",
+        "registration": "present"
+      },
+      "expectedMissing": [],
+      "predictedMissing": [],
+      "present": {
+        "tp": 14,
+        "fp": 0,
+        "fn": 0,
+        "tn": 0,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      },
+      "missing": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "tn": 14,
+        "precision": null,
+        "recall": null,
+        "f1": null
+      },
+      "correctItems": 14,
+      "accuracy": 1,
+      "allItemsMatch": true,
+      "coreMissing": {
+        "expected": [],
+        "actual": [],
+        "match": true
+      },
+      "mismatches": []
+    }
+  ],
+  "mismatches": [
+    {
+      "case": "ms-0005",
+      "category": "missing-abstract",
+      "item": "abstract",
+      "label": "Abstract",
+      "expected": "missing",
+      "predicted": "present",
+      "locator": {
+        "charStart": 2588,
+        "charEnd": 2595,
+        "match": "summary"
+      }
+    },
+    {
+      "case": "ms-0007",
+      "category": "strobe-cohort",
+      "item": "funding",
+      "label": "Funding",
+      "expected": "present",
+      "predicted": "missing",
+      "advice": "add a funding statement"
+    },
+    {
+      "case": "ms-0007",
+      "category": "strobe-cohort",
+      "item": "conflicts",
+      "label": "Conflicts of interest",
+      "expected": "present",
+      "predicted": "missing",
+      "advice": "add a conflicts-of-interest statement"
+    },
+    {
+      "case": "ms-0007",
+      "category": "strobe-cohort",
+      "item": "data",
+      "label": "Data availability",
+      "expected": "present",
+      "predicted": "missing",
+      "advice": "add a data-availability statement with an accession or repository"
+    },
+    {
+      "case": "ms-0007",
+      "category": "strobe-cohort",
+      "item": "contributions",
+      "label": "Author contributions",
+      "expected": "present",
+      "predicted": "missing",
+      "advice": "add an author-contributions statement"
+    },
+    {
+      "case": "ms-0009",
+      "category": "plain-text-title",
+      "item": "title",
+      "label": "Title",
+      "expected": "present",
+      "predicted": "missing",
+      "advice": "add a title"
+    }
+  ],
+  "notes": [
+    "Positive class for the headline metrics is present: an item is positive when the manuscript states it.",
+    "The missing matrix treats a missing verdict as positive, so it reports alert precision/recall rather than presence recall.",
+    "Labels are assigned by the generator from the manuscript construction; this adapter never changes them.",
+    "The manuscript guideline has no statistical-methods or randomization item; those content gaps are outside the 14-item label space.",
+    "Synthetic cases and keyword rules were authored by the same project; these numbers are a regression baseline, not an unbiased estimate."
+  ]
+}
