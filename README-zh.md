@@ -83,12 +83,13 @@ dsh --profile <name> --dump-config | grep dsh-manuscript-check
 
 - Read-only on the manuscript; the only writes are under `root`.
 - Path containment with `realpath` (symlink escapes rejected).
-- Character cap fails loudly instead of truncating.
+- Character cap fails loudly instead of truncating; a file is byte-capped
+  before it is read, so an oversized file cannot exhaust memory.
 - PDF/DOCX are rejected with a clear message rather than parsed unsafely.
 
 ## 评测
 
-**18 tests**: section splitting (markdown + plain), guideline coverage (complete CONSORT-style fixture ≥90%, missing items with advice, locators), auto-detection, guideline catalogue, pack scanning (complete pack, figure gap, missing declarations, not-ready without a manuscript), runtime (REP record validity, auto guideline + file reading, traversal/binary/oversize rejection, pack exports), tools (schemas, flat missing list, failure branch), package contract.
+**19 tests**: section splitting (markdown + plain), guideline coverage (complete CONSORT-style fixture ≥90%, missing items with advice, locators), auto-detection, guideline catalogue, pack scanning (complete pack, figure gap, missing declarations, not-ready without a manuscript), runtime (REP record validity, auto guideline + file reading, traversal/binary/oversize rejection including a pre-read byte cap, pack exports), tools (schemas, flat missing list, failure branch), package contract.
 
 No benchmark is claimed: this is a rule-based checklist whose ground truth would be "did the human find the same items", which needs a separate adjudicated corpus. Ten synthetic manuscripts are the natural next bench set; until then the unit fixtures are the evidence.
 

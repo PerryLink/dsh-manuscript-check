@@ -174,6 +174,7 @@ export class ManuscriptRuntime {
    */
   async check(request: CheckRequest): Promise<CheckResultValue> {
     if ((request.text === undefined) === (request.path === undefined)) throw new McError('INVALID_INPUT', 'pass exactly one of text or path')
+    if (request.text !== undefined && typeof request.text !== 'string') throw new McError('INVALID_INPUT', 'text must be a string')
     let text: string
     let sourceRef: AddEvidenceInput['sourceRef']
     let mediaType: Snapshot['mediaType'] = 'text/plain'
@@ -183,6 +184,11 @@ export class ManuscriptRuntime {
       sourceRef = { kind: 'other', id: 'inline:manuscript', retrievedAt: this.iso() }
     } else {
       const file = await this.resolveFile(request.path!)
+      // Reject an oversized file from its byte size before reading it: the
+      // character cap alone would still let a multi-gigabyte file exhaust memory.
+      const byteCap = this.config.maxChars * 4
+      const info = await stat(file.absolute)
+      if (info.size > byteCap) throw new McError('TOO_LARGE', `manuscript file is ${info.size} bytes, above the ${byteCap}-byte read cap for ${this.config.maxChars} characters`)
       try {
         text = await readManuscriptText(file.absolute)
       } catch (error) {

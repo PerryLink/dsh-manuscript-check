@@ -6,6 +6,19 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- A manuscript file is rejected from its byte size before `readFile`, so the
+  character cap no longer permits reading a multi-gigabyte file into memory.
+- `check` rejects a non-string `text` as `INVALID_INPUT` instead of failing
+  inside the analyzer.
+- The "plain-text headings" claim now has a regression test; the README
+  previously described this branch without exercising it.
+
+### Changed
+
+- Test count is now 19; README/CHANGELOG list the new failure branches.
+
 ## [0.1.0] - 2026-11-08
 
 First release: the pre-submission checklist.

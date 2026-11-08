@@ -61,6 +61,12 @@ describe('sections', () => {
   it('returns no sections when there are no headings', () => {
     expect(splitSections('Just a paragraph.')).toEqual([])
   })
+
+  it('splits plain-text headings when there are no markdown headings', () => {
+    const sections = splitSections('ABSTRACT\nText.\n\nMETHODS\nMore text.\n\nRESULTS\nDone.\n')
+    expect(sections.map(section => section.name)).toEqual(['abstract', 'methods', 'results'])
+    expect(sections[1]?.start).toBeGreaterThan(sections[0]!.start)
+  })
 })
 
 describe('guidelines', () => {

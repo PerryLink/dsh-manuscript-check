@@ -60,9 +60,11 @@ describe('runtime', () => {
     await expect(runtime().check({ path: 'paper.pdf' })).rejects.toMatchObject({ code: 'UNSUPPORTED_FILE' })
   })
 
-  it('rejects oversized input', async () => {
+  it('rejects oversized input before reading a file', async () => {
     const tiny = new ManuscriptRuntime({ config: resolveConfig({ workspaceRoot: workspace, root: store, maxChars: 10 }), now: () => AT })
     await expect(tiny.check({ text: MANUSCRIPT })).rejects.toMatchObject({ code: 'TOO_LARGE' })
+    await writeFile(path.join(workspace, 'large.md'), 'x'.repeat(41), 'utf8')
+    await expect(tiny.check({ path: 'large.md' })).rejects.toMatchObject({ code: 'TOO_LARGE' })
   })
 
   it('scans a pack and writes JSON + Markdown exports', async () => {
