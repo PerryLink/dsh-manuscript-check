@@ -77,14 +77,18 @@ export function splitSections(text: string): SectionRange[] {
     const name = SECTION_PATTERNS.find(entry => entry.pattern.test(heading))?.name ?? heading.toLowerCase().slice(0, 40)
     headings.push({ name, heading, index: match.index, length: match[0].length })
   }
-  if (headings.length === 0) {
-    for (const match of text.matchAll(/^([A-Z][A-Za-z ]{2,40})[ \t]*$/gmu)) {
-      const heading = match[1]!.trim()
-      const name = SECTION_PATTERNS.find(entry => entry.pattern.test(heading))?.name
-      if (name === undefined) continue
-      headings.push({ name, heading, index: match.index, length: match[0].length })
-    }
+  // Also scan plain-text headings even when markdown headings exist: a
+  // manuscript may use a markdown title and plain ALL-CAPS/Title sections.
+  // Only recognized section names are accepted here, so author/affiliation
+  // lines are not invented as sections.
+  for (const match of text.matchAll(/^([A-Z][A-Za-z ]{2,40})[ \t]*$/gmu)) {
+    const heading = match[1]!.trim()
+    const name = SECTION_PATTERNS.find(entry => entry.pattern.test(heading))?.name
+    if (name === undefined) continue
+    if (headings.some(existing => existing.index === match.index)) continue
+    headings.push({ name, heading, index: match.index, length: match[0].length })
   }
+  headings.sort((left, right) => left.index - right.index)
   return headings.map((heading, index) => ({
     name: heading.name,
     heading: heading.heading,

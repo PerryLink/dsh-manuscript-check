@@ -14,10 +14,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   inside the analyzer.
 - The "plain-text headings" claim now has a regression test; the README
   previously described this branch without exercising it.
+- Section detection no longer gives up on plain headings when a markdown
+  heading exists: a markdown title plus plain ABSTRACT/METHODS/RESULTS
+  headings is now split correctly.
 
 ### Changed
 
-- Test count is now 19; README/CHANGELOG list the new failure branches.
+- Test count is now 20; README/CHANGELOG list the new failure branches.
 
 ## [0.1.0] - 2026-11-08
 

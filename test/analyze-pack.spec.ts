@@ -67,6 +67,11 @@ describe('sections', () => {
     expect(sections.map(section => section.name)).toEqual(['abstract', 'methods', 'results'])
     expect(sections[1]?.start).toBeGreaterThan(sections[0]!.start)
   })
+
+  it('combines a markdown title with plain-text section headings', () => {
+    const sections = splitSections('# A trial title\n\nABSTRACT\nText.\n\nMETHODS\nMore text.\n\nRESULTS\nDone.\n')
+    expect(sections.map(section => section.name)).toEqual(['a trial title', 'abstract', 'methods', 'results'])
+  })
 })
 
 describe('guidelines', () => {
