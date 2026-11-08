@@ -1,7 +1,7 @@
 # dsh-manuscript-check benchmark: manuscripts
 
 - Dataset: `manuscripts` v0.1.0 (10 synthetic manuscripts, 140 item labels; 525-774 words each)
-- Plugin: `dsh-manuscript-check` v0.1.1
+- Plugin: `dsh-manuscript-check` v0.1.2
 - Call: `analyzeManuscript(text, [guidelineOf('manuscript')], ['manuscript'])`
 - Command: `pnpm run bench:manuscripts`
 - Labels: **135 present / 5 missing**

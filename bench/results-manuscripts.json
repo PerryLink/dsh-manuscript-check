@@ -4,7 +4,7 @@
   "synthetic": true,
   "plugin": {
     "name": "dsh-manuscript-check",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   "command": "pnpm run bench:manuscripts",
   "call": "analyzeManuscript(text, [guidelineOf('manuscript')], ['manuscript'])",
