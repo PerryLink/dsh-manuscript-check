@@ -22,6 +22,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - The benchmark data live in `dsh-research-bench` and are not vendored. Labels
   are fixed by the generator, never derived from plugin output.
 
+## [0.1.2] - 2026-11-08
+
+### Fixed
+
+- pack scan cap + manuscript benchmark.
+
 ## [0.1.1] - 2026-11-08
 
 ### Changed
