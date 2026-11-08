@@ -1,0 +1,14 @@
+# dsh-manuscript-check bundle patch: mount the pre-submission checklist tools.
+#
+# Every key below is a Config field (Schemastery schema); invalid values fail the
+# profile load loudly. All checks are local; nothing is uploaded or converted.
+- insert:
+    - id: dsh-manuscript-check
+      name: dsh-manuscript-check
+      config:
+        enabled: true
+        root: .manuscript-check
+        # Hard cap on manuscript characters; over-limit input fails, never truncated.
+        maxChars: 2000000
+        # Persist the checked text as REP evidence + record.
+        persist: true
