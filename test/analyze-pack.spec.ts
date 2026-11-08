@@ -122,6 +122,15 @@ describe('submission pack', () => {
     expect(report.issues.map(issue => issue.code)).toContain('no_declarations_file')
   })
 
+  it('caps the number of scanned entries and reports truncation', async () => {
+    await writeFile(path.join(root, 'manuscript.md'), MANUSCRIPT, 'utf8')
+    await writeFile(path.join(root, 'cover-letter.md'), 'Dear editor', 'utf8')
+    await writeFile(path.join(root, 'extra.md'), 'extra', 'utf8')
+    const report = await scanPack(root, { maxEntries: 2 })
+    expect(report.entries.length).toBeLessThanOrEqual(2)
+    expect(report.issues.some(issue => issue.code === 'scan_truncated')).toBe(true)
+  })
+
   it('is not ready without a manuscript file', async () => {
     await writeFile(path.join(root, 'cover-letter.md'), 'Dear editor', 'utf8')
     const report = await scanPack(root)

@@ -58,8 +58,10 @@ function kindOf(relative: string): PackEntry['kind'] {
  * @param options - `recursive` descends one extra level.
  * @returns the pack report.
  */
-export async function scanPack(root: string, options: { recursive?: boolean } = {}): Promise<PackReport> {
+export async function scanPack(root: string, options: { recursive?: boolean; maxEntries?: number } = {}): Promise<PackReport> {
+  const maxEntries = options.maxEntries ?? 2000
   const entries: PackEntry[] = []
+  let truncated = false
   const walk = async (directory: string, depth: number): Promise<void> => {
     if (depth > 2) return
     let listing
@@ -69,6 +71,7 @@ export async function scanPack(root: string, options: { recursive?: boolean } = 
       return
     }
     for (const entry of listing.sort((left, right) => left.name.localeCompare(right.name))) {
+      if (entries.length >= maxEntries) { truncated = true; return }
       if (entry.name.startsWith('.') || entry.name === 'node_modules') continue
       const absolute = path.join(directory, entry.name)
       if (entry.isDirectory()) {
@@ -108,6 +111,9 @@ export async function scanPack(root: string, options: { recursive?: boolean } = 
   }
   if (!entries.some(entry => entry.kind === 'table')) {
     issues.push({ code: 'no_tables', severity: 'info', detail: 'no table files found (tables may be embedded in the manuscript)', suggestion: 'submit tables separately when the journal requires it' })
+  }
+  if (truncated) {
+    issues.push({ code: 'scan_truncated', severity: 'info', detail: `the pack scan stopped after ${maxEntries} files`, suggestion: 'raise maxEntries or audit a narrower directory; the report does not cover every file' })
   }
   if (!entries.some(entry => entry.kind === 'declarations')) {
     issues.push({ code: 'no_declarations_file', severity: 'warning', detail: 'no declarations file found (ethics/funding/conflicts/data availability)', suggestion: 'add the declaration statements or include them in the manuscript' })
