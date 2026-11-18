@@ -6,6 +6,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-11-18
+
 ### Added
 
 - Deterministic 10-manuscript synthetic benchmark adapter: `bench/run-manuscripts.mjs`
