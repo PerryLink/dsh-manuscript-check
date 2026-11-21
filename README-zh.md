@@ -1,13 +1,22 @@
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-manuscript-check-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-manuscript-check-hero-zh-light.webp" width="100%" alt="dsh-manuscript-check 配图：一份三行草稿按 manuscript 指南 14 项检查 —— 方法一节已存在并给出字符区间，摘要与资助声明缺失并附建议；下方是实测的基准 precision / recall 与投稿包扫描结果">
+</picture>
+
 # dsh-manuscript-check
 
-**投稿前：稿件是否完整、指南要求报告的内容是否都报告了、投稿包是否真的打齐了？**
+**投稿前的检查清单 —— 不是合规结论。**
 
-*基于关键词的检查清单，附定位与建议：结构与声明、起步版 CONSORT / STROBE / PRISMA 条目覆盖，以及投稿目录扫描。*
+*识别章节与声明并给出字符区间；起步版 CONSORT / STROBE / PRISMA 条目覆盖（14–18 项）；扫描投稿目录并输出 JSON + Markdown 报告。*
+
+[English](README.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24.9-brightgreen.svg)]()
 
-[English](README.md) · 简体中文
+</div>
 
 ---
 
@@ -16,6 +25,14 @@
 - **`manuscript_check`** —— 识别标题/摘要/引言/方法/结果/讨论/结论，以及常见声明（伦理、知情同意、资助、利益冲突、数据可用性、贡献、注册），并检查一套指南（默认 `manuscript`，也可为 `consort`、`strobe`、`prisma`，或由措辞自动判断的 `auto`）。缺失项附带建议；已存在的项会给出命中的字符区间。
 - **`reporting_check`** —— 一次检查多套指南，输出一份扁平化缺失项列表，可直接粘贴到投稿检查清单。
 - **`submission_pack`** —— 扫描投稿目录中的稿件、cover letter、编号图（能发现编号断档）、表格、补充材料与声明；写出 JSON + Markdown 材料包报告。
+
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-manuscript-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-manuscript-check-flow-v5-light.svg" width="100%" alt="dsh-manuscript-check 结构图：文本被拆成章节与声明，按 14–18 条的指南清单匹配，输出带建议的缺失项与带字符区间的已存在项，并产出投稿包扫描或 REP 证据；结论留给审阅人">
+</picture>
+
+*结构：分析 → 检查 → 记录；`missing[]` 与 `analysis` 是两条输出，投稿包扫描把 JSON + Markdown 写进 `root`，关键词命中只代表“存在”而不代表“充分”。图内只有真实的函数名、工具名与字段名，五语共用同一张结构图。*
 
 ## 它不做什么
 
@@ -87,6 +104,11 @@ dsh --profile <name> --dump-config | grep dsh-manuscript-check
 - PDF/DOCX 会以明确提示拒绝，而不是不安全地解析。
 
 ## 评测
+
+![dsh-manuscript-check 基准评测：10 篇合成稿件的真实运行 —— 存在性 precision 0.9924、recall 0.9630，条目准确率 0.9571，并如实列出 6 条实测误判中的两条](docs/assets/dsh-manuscript-check-demo.gif)
+
+*动图是 `node bench/run-manuscripts.mjs` 在冻结的 `dsh-research-bench` manuscripts 数据集上的真实 stdout（`BENCH_DIR` 指向同级 checkout；不联网、输出确定；2026-11-21 复跑）。末尾两行是 6 条实测误判中的两条 —— 其中四条出现在内容完整的 STROBE 稿件里，如实报告而不是隐藏。*
+
 
 **22 个测试**：章节切分（markdown + 纯文本 + markdown 标题/纯文本章节混排）、指南覆盖（完整的 CONSORT 风格 fixture ≥90%、缺失项带建议、定位信息）、自动识别、指南目录、材料包扫描（完整材料包、图表编号断档、声明缺失、没有稿件时判定未就绪）、运行时（REP 记录合法性、auto 指南 + 文件读取、路径遍历/二进制/超大文件拒绝（含读取前字节上限）、材料包导出）、tools（schema、扁平缺失列表、失败分支）、包契约。
 

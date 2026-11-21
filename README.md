@@ -1,13 +1,22 @@
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-manuscript-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-manuscript-check-hero-en-light.webp" width="100%" alt="dsh-manuscript-check: a three-line draft checked against the 14-item manuscript guideline — methods present with a character locator, abstract and funding missing with advice — plus the measured benchmark precision/recall and a ready submission-pack scan">
+</picture>
+
 # dsh-manuscript-check
 
-**Before you submit: is the manuscript complete, does it report what the guideline asks for, and is the submission pack actually packed?**
+**A pre-submission checklist — not a compliance verdict.**
 
-*A keyword-based checklist with locators and advice — structure and declarations, starter CONSORT / STROBE / PRISMA item coverage, and a submission-directory scan.*
+*Sections and declarations with character locators, starter CONSORT / STROBE / PRISMA item coverage (14–18 items), and a submission-directory scan with JSON + Markdown reports.*
+
+[简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24.9-brightgreen.svg)]()
 
-English · [简体中文](README-zh.md)
+</div>
 
 ---
 
@@ -16,6 +25,14 @@ English · [简体中文](README-zh.md)
 - **`manuscript_check`** — detects title/abstract/introduction/methods/results/discussion/conclusion, the usual declarations (ethics, consent, funding, conflicts, data availability, contributions, registration), and checks one guideline (`manuscript` default, `consort`, `strobe`, `prisma`, or `auto` from the wording). Missing items come with advice; present items carry the character range that matched.
 - **`reporting_check`** — several guidelines at once, a flat missing-item list ready to paste into a submission checklist.
 - **`submission_pack`** — scans a submission directory for manuscript, cover letter, numbered figures (detects numbering gaps), tables, supplements and declarations; writes a JSON + Markdown pack report.
+
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-manuscript-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-manuscript-check-flow-v5-light.svg" width="100%" alt="dsh-manuscript-check structure: text is split into sections and declarations, matched against 14–18-item guideline lists, scored into missing items with advice and present items with character locators, and a submission-pack scan or REP evidence is produced; the verdict stays with the reviewer">
+</picture>
+
+*Structure: analyze → check → record; `missing[]` and `analysis` are the two outputs, the pack scan writes JSON + Markdown under `root`, and a keyword match is presence, not adequacy. The token labels inside the diagram are the real function, tool and field names, so the same picture serves all five languages.*
 
 ## What it does not do
 
@@ -88,6 +105,11 @@ dsh --profile <name> --dump-config | grep dsh-manuscript-check
 - PDF/DOCX are rejected with a clear message rather than parsed unsafely.
 
 ## Evaluation
+
+![dsh-manuscript-check benchmark: a real run over 10 synthetic manuscripts — presence precision 0.9924 and recall 0.9630, item accuracy 0.9571, and two of the six measured item misses reported rather than hidden](docs/assets/dsh-manuscript-check-demo.gif)
+
+*Animated: the real stdout of `node bench/run-manuscripts.mjs` over the frozen `dsh-research-bench` manuscripts dataset (`BENCH_DIR` points at the sibling checkout; no network, deterministic output; re-run 2026-11-21). The last two lines are two of the six measured item misses — four of them are in the content-complete STROBE manuscript — and they are reported, not hidden.*
+
 
 **22 tests**: section splitting (markdown + plain + mixed markdown-title/plain-section), guideline coverage (complete CONSORT-style fixture ≥90%, missing items with advice, locators), auto-detection, guideline catalogue, pack scanning (complete pack, figure gap, missing declarations, not-ready without a manuscript), runtime (REP record validity, auto guideline + file reading, traversal/binary/oversize rejection including a pre-read byte cap, pack exports), tools (schemas, flat missing list, failure branch), package contract.
 
