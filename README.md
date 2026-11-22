@@ -7,6 +7,8 @@
 
 # dsh-manuscript-check
 
+当前版本 `0.1.5`。
+
 **A pre-submission checklist — not a compliance verdict.**
 
 *Sections and declarations with character locators, starter CONSORT / STROBE / PRISMA item coverage (14–18 items), and a submission-directory scan with JSON + Markdown reports.*
