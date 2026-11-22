@@ -26,7 +26,6 @@
 - **`reporting_check`** — several guidelines at once, a flat missing-item list ready to paste into a submission checklist.
 - **`submission_pack`** — scans a submission directory for manuscript, cover letter, numbered figures (detects numbering gaps), tables, supplements and declarations; writes a JSON + Markdown pack report.
 
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-manuscript-check-flow-v5-dark.svg">
   <img src="docs/assets/dsh-manuscript-check-flow-v5-light.svg" width="100%" alt="dsh-manuscript-check structure: text is split into sections and declarations, matched against 14–18-item guideline lists, scored into missing items with advice and present items with character locators, and a submission-pack scan or REP evidence is produced; the verdict stays with the reviewer">
@@ -76,7 +75,7 @@ Coverage below the target is flagged as "below target"; it is not an error.
 
 | | |
 |---|---|
-| DeepSeek Harness | **`dsh-v0.2.2-rc.4`** (verified 2026-11-18); peer `>=0.2.1-0 <0.3.0 \|\| >=0.2.2-0 <0.3.0` |
+| DeepSeek Harness | **`dsh-v0.2.3-alpha.1`** (verified 2026-11-22); peer `>=0.2.1-0 <0.3.0 \|\| >=0.2.2-0 <0.3.0` |
 | Node | `^22.19.0 \|\| >=24.9.0` (tested `24.22.1`), ESM only |
 | Peers | `@perrylink/dsh-research-core ^0.1.0`, `@deepseek-ai/cordis ^4.0.5-alpha.1`, `@deepseek-ai/dsh-tools`, `@deepseek-ai/schemastery ^3.18.5-alpha.1` |
 | Runtime dependencies | **zero** |
@@ -109,7 +108,6 @@ dsh --profile <name> --dump-config | grep dsh-manuscript-check
 ![dsh-manuscript-check benchmark: a real run over 10 synthetic manuscripts — presence precision 0.9924 and recall 0.9630, item accuracy 0.9571, and two of the six measured item misses reported rather than hidden](docs/assets/dsh-manuscript-check-demo.gif)
 
 *Animated: the real stdout of `node bench/run-manuscripts.mjs` over the frozen `dsh-research-bench` manuscripts dataset (`BENCH_DIR` points at the sibling checkout; no network, deterministic output; re-run 2026-11-21). The last two lines are two of the six measured item misses — four of them are in the content-complete STROBE manuscript — and they are reported, not hidden.*
-
 
 **22 tests**: section splitting (markdown + plain + mixed markdown-title/plain-section), guideline coverage (complete CONSORT-style fixture ≥90%, missing items with advice, locators), auto-detection, guideline catalogue, pack scanning (complete pack, figure gap, missing declarations, not-ready without a manuscript), runtime (REP record validity, auto guideline + file reading, traversal/binary/oversize rejection including a pre-read byte cap, pack exports), tools (schemas, flat missing list, failure branch), package contract.
 

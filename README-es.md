@@ -26,7 +26,6 @@
 - **`reporting_check`** — varias guías a la vez, una lista plana de ítems ausentes lista para pegar en una lista de comprobación de envío.
 - **`submission_pack`** — escanea un directorio de envío en busca de manuscrito, carta de presentación, figuras numeradas (detecta huecos en la numeración), tablas, suplementos y declaraciones; escribe un informe del paquete en JSON + Markdown.
 
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-manuscript-check-flow-v5-dark.svg">
   <img src="docs/assets/dsh-manuscript-check-flow-v5-light.svg" width="100%" alt="dsh-manuscript-check estructura: el texto se divide en secciones y declaraciones, se compara con listas de 14–18 ítems, se puntúa en ítems ausentes con consejos e ítems presentes con localizadores de caracteres, y se produce un escaneo del paquete de envío o evidencia REP; el veredicto queda en el revisor">
@@ -76,7 +75,7 @@ Una cobertura por debajo del objetivo se marca como "below target"; no es un err
 
 | | |
 |---|---|
-| DeepSeek Harness | **`dsh-v0.2.2-rc.4`** (verificado 2026-11-18); peer `>=0.2.1-0 <0.3.0 \|\| >=0.2.2-0 <0.3.0` |
+| DeepSeek Harness | **`dsh-v0.2.3-alpha.1`** (verificado 2026-11-22); peer `>=0.2.1-0 <0.3.0 \|\| >=0.2.2-0 <0.3.0` |
 | Node | `^22.19.0 \|\| >=24.9.0` (probado en `24.22.1`), solo ESM |
 | Peers | `@perrylink/dsh-research-core ^0.1.0`, `@deepseek-ai/cordis ^4.0.5-alpha.1`, `@deepseek-ai/dsh-tools`, `@deepseek-ai/schemastery ^3.18.5-alpha.1` |
 | Dependencias en tiempo de ejecución | **cero** |
@@ -109,7 +108,6 @@ dsh --profile <name> --dump-config | grep dsh-manuscript-check
 ![dsh-manuscript-check benchmark: una ejecución real sobre 10 manuscritos sintéticos — precisión 0.9924 y exhaustividad 0.9630 de presencia, exactitud por ítem 0.9571, y dos de las seis omisiones medidas reportadas en lugar de ocultarse](docs/assets/dsh-manuscript-check-demo.gif)
 
 *Animado: el stdout real de `pnpm run bench:manuscripts` sobre el dataset congelado de `dsh-research-bench` (sin red, salida determinista; reejecutado el 2026-11-21). Las dos últimas líneas son dos de las seis omisiones medidas — cuatro están en el manuscrito STROBE de contenido completo — y se reportan, no se ocultan.*
-
 
 **22 pruebas**: división en secciones (markdown + texto plano + markdown con título y secciones en texto plano), cobertura de guías (fixture completo estilo CONSORT ≥90%, ítems ausentes con consejos, localizadores), detección automática, catálogo de guías, escaneo de paquetes (paquete completo, hueco de figura, declaraciones ausentes, no listo sin manuscrito), runtime (validez del registro REP, guía automática + lectura de archivos, rechazo de travesía/binario/tamaño excesivo incluido un tope de bytes previo a la lectura, exportaciones del paquete), herramientas (esquemas, lista plana de ausentes, rama de fallo), contrato del paquete.
 

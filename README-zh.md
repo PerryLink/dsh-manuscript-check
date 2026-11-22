@@ -26,7 +26,6 @@
 - **`reporting_check`** —— 一次检查多套指南，输出一份扁平化缺失项列表，可直接粘贴到投稿检查清单。
 - **`submission_pack`** —— 扫描投稿目录中的稿件、cover letter、编号图（能发现编号断档）、表格、补充材料与声明；写出 JSON + Markdown 材料包报告。
 
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-manuscript-check-flow-v5-dark.svg">
   <img src="docs/assets/dsh-manuscript-check-flow-v5-light.svg" width="100%" alt="dsh-manuscript-check 结构图：文本被拆成章节与声明，按 14–18 条的指南清单匹配，输出带建议的缺失项与带字符区间的已存在项，并产出投稿包扫描或 REP 证据；结论留给审阅人">
@@ -76,7 +75,7 @@
 
 | | |
 |---|---|
-| DeepSeek Harness | **`dsh-v0.2.2-rc.4`**（2026-11-18 实测）；peer `>=0.2.1-0 <0.3.0 \|\| >=0.2.2-0 <0.3.0` |
+| DeepSeek Harness | **`dsh-v0.2.3-alpha.1`**（2026-11-22 实测）；peer `>=0.2.1-0 <0.3.0 \|\| >=0.2.2-0 <0.3.0` |
 | Node | `^22.19.0 \|\| >=24.9.0`（实测 `24.22.1`），仅 ESM |
 | Peer 依赖 | `@perrylink/dsh-research-core ^0.1.0`、`@deepseek-ai/cordis ^4.0.5-alpha.1`、`@deepseek-ai/dsh-tools`、`@deepseek-ai/schemastery ^3.18.5-alpha.1` |
 | 运行时依赖 | **零** |
@@ -108,7 +107,6 @@ dsh --profile <name> --dump-config | grep dsh-manuscript-check
 ![dsh-manuscript-check 基准评测：10 篇合成稿件的真实运行 —— 存在性 precision 0.9924、recall 0.9630，条目准确率 0.9571，并如实列出 6 条实测误判中的两条](docs/assets/dsh-manuscript-check-demo.gif)
 
 *动图是 `node bench/run-manuscripts.mjs` 在冻结的 `dsh-research-bench` manuscripts 数据集上的真实 stdout（`BENCH_DIR` 指向同级 checkout；不联网、输出确定；2026-11-21 复跑）。末尾两行是 6 条实测误判中的两条 —— 其中四条出现在内容完整的 STROBE 稿件里，如实报告而不是隐藏。*
-
 
 **22 个测试**：章节切分（markdown + 纯文本 + markdown 标题/纯文本章节混排）、指南覆盖（完整的 CONSORT 风格 fixture ≥90%、缺失项带建议、定位信息）、自动识别、指南目录、材料包扫描（完整材料包、图表编号断档、声明缺失、没有稿件时判定未就绪）、运行时（REP 记录合法性、auto 指南 + 文件读取、路径遍历/二进制/超大文件拒绝（含读取前字节上限）、材料包导出）、tools（schema、扁平缺失列表、失败分支）、包契约。
 
